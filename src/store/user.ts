@@ -3,6 +3,7 @@ import { login } from '../api/user'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
+    user_id:'',
     username: '',
     nickname: '',
     role: '',
@@ -12,6 +13,7 @@ export const useUserStore = defineStore('user', {
   actions:{
     async login(loginForm:object){
       const {data} = await login(loginForm)
+      this.user_id = data.user_id
       this.username = data.username
       this.nickname = data.nickname
       this.token = data.token
