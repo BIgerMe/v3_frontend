@@ -13,7 +13,7 @@ export const useUserStore = defineStore('user', {
   actions:{
     async login(loginForm:object){
       const {data} = await login(loginForm)
-      this.user_id = data.user_id
+      this.user_id = data.id
       this.username = data.username
       this.nickname = data.nickname
       this.token = data.token
