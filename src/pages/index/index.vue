@@ -4,12 +4,14 @@ import {roomAdd, roomAddTo, roomList} from "../../api/room";
 import { useUserStore } from '@/store/user'
 import EmojiPicker from 'vue3-emoji-picker'
 import 'vue3-emoji-picker/css'
+import QrcodeVue from "qrcode.vue";
 
 const user = useUserStore()
 const visible = ref(false)
 const emoji = ref(false)
 const content = ref(null)
 const scroll = ref(false) //如果为true则事件不触发滚动置底
+const qrUrl = ref("weixin://wxpay/bizpayurl?pr=vfY48pPzz")
 
 const room = reactive({
   add: '',
@@ -183,6 +185,9 @@ onMounted(() => {
       <p style="margin: 0 10px 0 0;padding:10px 15px;" v-for="item in room.list" @click="selectCurrentRoom(item.room_id)">
         {{ item.title }}
       </p>
+      <div>
+          <qrcode-vue :value="qrUrl" size="200" level="H"></qrcode-vue>
+      </div>
     </el-col>
     <el-col :span="18">
       <h3 style="text-align: center" v-if="room.currentRoom">{{room.list[room.currentRoom].title}}<span style="font-size: 14px">&nbsp;&nbsp;#id:{{room.currentRoom}}</span></h3>
