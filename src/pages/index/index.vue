@@ -5,13 +5,13 @@ import { useUserStore } from '@/store/user'
 import EmojiPicker from 'vue3-emoji-picker'
 import 'vue3-emoji-picker/css'
 import QrcodeVue from "qrcode.vue";
-
+import phoenix from '@/components/phoenix.vue'
 const user = useUserStore()
 const visible = ref(false)
 const emoji = ref(false)
 const content = ref(null)
 const scroll = ref(false) //如果为true则事件不触发滚动置底
-const qrUrl = ref("weixin://wxpay/bizpayurl?pr=vfY48pPzz")
+const qrUrl = ref("weixin://wxpay/bizpayurl?pr=bOIUcoUzz")
 
 const room = reactive({
   add: '',
@@ -178,7 +178,10 @@ onMounted(() => {
     </template>
   </el-dialog>
   <el-row>
-    <el-col :span="6">
+    <div style="position:absolute;z-index:-9999">
+      <phoenix :refName="'phoenixAnimate'" :width="'100vw'" :height="'100vh'"></phoenix>
+    </div>
+    <el-col :span="4">
       <div>
         <el-button plain @click="visible=true"><el-icon><Plus /></el-icon></el-button>
       </div>
@@ -186,10 +189,10 @@ onMounted(() => {
         {{ item.title }}
       </p>
       <div>
-          <qrcode-vue :value="qrUrl" size="200" level="H"></qrcode-vue>
+<!--          <qrcode-vue :value="qrUrl" size="200" level="H"></qrcode-vue>-->
       </div>
     </el-col>
-    <el-col :span="18">
+    <el-col :span="16">
       <h3 style="text-align: center" v-if="room.currentRoom">{{room.list[room.currentRoom].title}}<span style="font-size: 14px">&nbsp;&nbsp;#id:{{room.currentRoom}}</span></h3>
       <el-scrollbar ref="content" style="height: 70vh;padding-right: 25px;margin-bottom: 35px">
         <div v-if="room.currentRoom != ''" v-for="(item,index) in room.list[room.currentRoom].content">

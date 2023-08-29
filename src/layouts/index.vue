@@ -39,6 +39,10 @@
       >
         <el-menu-item index="/index">首页</el-menu-item>
         <el-menu-item index="/blog">b</el-menu-item>
+        <el-sub-menu index="/3d">
+          <template #title>3d</template>
+          <el-menu-item index="/3d/phoenix">凤凰</el-menu-item>
+        </el-sub-menu>
         <div style="flex-grow: 1;" />
         <el-sub-menu index="user" v-if="user.nickname">
           <template #title>{{user.nickname}}</template>

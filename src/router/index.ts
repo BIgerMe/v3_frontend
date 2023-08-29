@@ -46,6 +46,18 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/3d',
+    name: '3d',
+    component:Layout,
+    children:[
+      {
+        path:'phoenix',
+        name:'凤凰',
+        component:()=>import('@/pages/3d/phoenix.vue'),
+      },
+    ],
+  },
 ]
 
 const router = createRouter({
